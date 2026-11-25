@@ -11,18 +11,26 @@ is part of the panel; it ships nowhere.
 
 ## Announcing a new build
 
-1. Put the new `.pkg` / `.zip` somewhere **anyone can download without signing
-   in** — a release on a public repository, Dropbox, Google Drive.
+1. Build the zips (`install/Build ZIP.command`) and attach them to a release
+   **on this repository**, which is public, so anyone can download them without
+   signing in:
+
+   ```bash
+   gh release create v1.1.0 --repo genxnayem-svg/Headstart-updates \
+       --title "Headstart 1.1.0" --notes "What changed." \
+       Headstart-1.1.0-mac.zip Headstart-1.1.0-win.zip
+   ```
 2. Edit `version.json`: bump `version`, set today's `date`, write a line or two
-   in `notes`, paste the download link into `url`.
+   in `notes`. Leave `url` alone — it already points at the newest release.
 3. Commit and push. Every panel picks it up the next time it opens.
 
 `version` must be plain numbers like `1.2.0` — the panel compares them part by
 part. Keep it the same as `ExtensionBundleVersion` in the panel's
 `CSXS/manifest.xml`, which is the number the panel compares against.
 
-> `url` currently points at the **private** Headstart repository, which nobody
-> else can open. Replace it with a public link before you tell anyone to update.
+`url` is `.../Headstart-updates/releases/latest`, which always resolves to the
+newest release here, so step 2 only has to touch it if the downloads ever move
+somewhere else.
 
 ## Where the panel reads it from
 
